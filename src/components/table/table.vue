@@ -21,7 +21,7 @@
                     :styleObject="tableStyle"
                     :columns="cloneColumns"
                     :data="rebuildData"
-                    :row-key="rowKey"
+                    :row-key="rowKey || rowIdKey"
                     :columns-width="columnsWidth"
                     :obj-data="objData"></table-body>
             </div>
@@ -60,7 +60,7 @@
                         :styleObject="fixedTableStyle"
                         :columns="leftFixedColumns"
                         :data="rebuildData"
-                        :row-key="rowKey"
+                        :row-key="rowKey || rowIdKey"
                         :columns-width="columnsWidth"
                         :obj-data="objData"></table-body>
                 </div>
@@ -86,7 +86,7 @@
                         :styleObject="fixedRightTableStyle"
                         :columns="rightFixedColumns"
                         :data="rebuildData"
-                        :row-key="rowKey"
+                        :row-key="rowKey || rowIdKey"
                         :columns-width="columnsWidth"
                         :obj-data="objData"></table-body>
                 </div>
@@ -208,6 +208,11 @@
             rowKey: {
                 type: Boolean,
                 default: false
+            },
+            // rowIdKey 优先于 rowKey
+            rowIdKey: {
+                type: String,
+                default: ''
             }
         },
         data () {
@@ -807,7 +812,7 @@
                 let data = deepCopy(this.data);
                 data.forEach((row, index) => {
                     row._index = index;
-                    row._rowKey = rowKey++;
+                    row._rowKey = this.rowIdKey ? row[this.rowIdKey] : rowKey++;
                 });
                 return data;
             },

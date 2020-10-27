@@ -21,7 +21,7 @@
                     :styleObject="tableStyle"
                     :columns="cloneColumns"
                     :data="rebuildData"
-                    :row-key="rowKey || rowIdKey"
+                    :row-key="rowKey || !!rowIdKey"
                     :columns-width="columnsWidth"
                     :obj-data="objData"></table-body>
             </div>
@@ -60,7 +60,7 @@
                         :styleObject="fixedTableStyle"
                         :columns="leftFixedColumns"
                         :data="rebuildData"
-                        :row-key="rowKey || rowIdKey"
+                        :row-key="rowKey || !!rowIdKey"
                         :columns-width="columnsWidth"
                         :obj-data="objData"></table-body>
                 </div>
@@ -86,7 +86,7 @@
                         :styleObject="fixedRightTableStyle"
                         :columns="rightFixedColumns"
                         :data="rebuildData"
-                        :row-key="rowKey || rowIdKey"
+                        :row-key="rowKey || !!rowIdKey"
                         :columns-width="columnsWidth"
                         :obj-data="objData"></table-body>
                 </div>
